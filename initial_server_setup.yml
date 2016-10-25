@@ -1,0 +1,5 @@
+---
+- include: tasks/basic_setup.yml
+- include: tasks/create_nonroot_user.yml
+
+

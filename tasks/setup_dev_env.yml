@@ -1,0 +1,35 @@
+---
+- hosts: '{{ target }}'
+  become: true
+  become_user: '{{ user }}'
+
+  tasks:
+    - name: Copy vimrc
+      copy: src=files/vimrc.pre dest=~/.vimrc
+      tags: user
+
+    - name: Pull Vundle from repository
+      git:
+        repo: 'https://github.com/VundleVim/Vundle.vim.git'
+        dest: ~/.vim/bundle/Vundle.vim
+      tags: user
+
+    - name: Run vim and update plugins
+      command: vim +PluginInstall +qall
+      tags: user
+
+    - name: Copy vimrc
+      copy: src=files/vimrc dest=~/.vimrc
+      tags: user
+
+    - name: Copy screenrc
+      copy: src=files/screenrc dest=~/.screenrc
+      tags: user
+
+    - name: fix .bashrc
+      lineinfile:
+        dest=~/.bashrc
+        line="export TERMCAP=$(echo $TERMCAP | sed -e 's/Co#8/Co#256/g')"
+        insertafter=EOF
+
+

@@ -1,0 +1,17 @@
+---
+system_packages:
+  - build-essential
+  - git
+  - python
+  - python-dev
+  - python-setuptools
+  - vim
+  - screen
+  - fail2ban
+python_packages:
+  - pip
+  - virtualenv
+  - psycopg2
+
+
+

@@ -1,0 +1,6 @@
+---
+- include: tasks/basic_setup.yml
+- include: tasks/create_nonroot_user.yml user='{{ user }}'
+- include: tasks/setup_dev_env.yml user='{{ user }}'
+- include: tasks/setup_dev_env.yml user=root
+
